@@ -33,8 +33,6 @@ if (navigator.getUserMedia) {
           const average = values / length;
           
           renderMeter(average);
-
-          
         }
     },
     (err) => {

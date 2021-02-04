@@ -8,7 +8,9 @@
 main {
   background-color: black;
   padding: 1rem;
+  min-width: 300px;
   width: 40%;
+  max-width: 400px;
   margin: 4rem auto;
   border-radius: 0.5rem;
   user-select: none;
