@@ -51,16 +51,21 @@ const renderMeter = (average) => {
   const yellowThreshold = parseInt(document.querySelector('#yellow-threshold').value);
   const redThreshold = parseInt(document.querySelector('#red-threshold').value);
 
+  const dbIndicator = document.querySelector('#dbs');
+  dbIndicator.classList.remove('green', 'red', 'yellow');
+
   ctx.clearRect(0, 0, 100, 300);
   if (dbs < yellowThreshold) {
     ctx.fillStyle = 'green';
+    dbIndicator.classList.add('green');
   } else if (dbs >= yellowThreshold && dbs < redThreshold) {
     ctx.fillStyle = 'yellow';
+    dbIndicator.classList.add('yellow');
   } else if (dbs >= redThreshold) {
     ctx.fillStyle = 'red';
+    dbIndicator.classList.add('red');
   }
   ctx.fillRect(0, 300 - average, 100, 300);
 
-  const dbIndicator = document.querySelector('#dbs');
   dbIndicator.textContent = `${dbs} dB`;
 }
