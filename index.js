@@ -48,12 +48,15 @@ const renderMeter = (average) => {
   const ctx = document.querySelector('canvas').getContext('2d');
   const dbs = Math.round(average - 40);
 
+  const yellowThreshold = parseInt(document.querySelector('#yellow-threshold').value);
+  const redThreshold = parseInt(document.querySelector('#red-threshold').value);
+
   ctx.clearRect(0, 0, 100, 300);
-  if (dbs < 30) {
+  if (dbs < yellowThreshold) {
     ctx.fillStyle = 'green';
-  } else if (dbs >= 30 && dbs < 50) {
+  } else if (dbs >= yellowThreshold && dbs < redThreshold) {
     ctx.fillStyle = 'yellow';
-  } else if (dbs >= 50) {
+  } else if (dbs >= redThreshold) {
     ctx.fillStyle = 'red';
   }
   ctx.fillRect(0, 300 - average, 100, 300);

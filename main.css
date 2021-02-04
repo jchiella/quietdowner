@@ -37,3 +37,27 @@ canvas {
 #title .green {
   color: green;
 }
+
+.controls {
+  display: flex;
+  margin: 1rem auto;
+}
+
+.controls input {
+  font-size: x-large;
+  width: 50%;
+  margin: 0.5rem;
+  border: none;
+  font-weight: bolder;
+  text-align: center;
+}
+
+#yellow-threshold {
+  background-color: yellow;
+  color: black;
+}
+
+#red-threshold {
+  background-color: red;
+  color: white;
+}
