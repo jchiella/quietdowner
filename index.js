@@ -19,7 +19,6 @@ if (navigator.getUserMedia) {
       analyser.connect(javascriptNode);
       javascriptNode.connect(audioContext.destination);
 
-      ctx = document.querySelector('canvas').getContext('2d');
 
       javascriptNode.onaudioprocess = () => {
           var array = new Uint8Array(analyser.frequencyBinCount);
@@ -31,13 +30,11 @@ if (navigator.getUserMedia) {
             values += (array[i]);
           }
 
-          var average = values / length;
+          const average = values / length;
+          
+          renderMeter(average);
 
-          // var dbs = Math.round(average - 40);
-
-          ctx.clearRect(0, 0, 100, 300);
-          ctx.fillStyle = 'white';
-          ctx.fillRect(0, 300 - average, 100, 300);
+          
         }
     },
     (err) => {
@@ -45,4 +42,22 @@ if (navigator.getUserMedia) {
     });
 } else {
   console.log("getUserMedia not supported");
+}
+
+const renderMeter = (average) => {
+  const ctx = document.querySelector('canvas').getContext('2d');
+  const dbs = Math.round(average - 40);
+
+  ctx.clearRect(0, 0, 100, 300);
+  if (dbs < 30) {
+    ctx.fillStyle = 'green';
+  } else if (dbs >= 30 && dbs < 50) {
+    ctx.fillStyle = 'yellow';
+  } else if (dbs >= 50) {
+    ctx.fillStyle = 'red';
+  }
+  ctx.fillRect(0, 300 - average, 100, 300);
+
+  const dbIndicator = document.querySelector('#dbs');
+  dbIndicator.textContent = `${dbs} dB`;
 }
