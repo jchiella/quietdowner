@@ -1,6 +1,6 @@
 # The Quietdowner
 
-A simple web-based dB meter with customizeable thresholds for monitoring your voice if you need to talk quieter.
+A simple web-based dB meter with customizable thresholds for monitoring your voice if you need to talk quieter.
 
 Deployed [here](https://quietdowner.vercel.app/).
 
